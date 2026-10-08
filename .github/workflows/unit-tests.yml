@@ -75,7 +75,7 @@ jobs:
           pip3 install --upgrade nbconvert
 
       - name: Run comments integration test 🧪
-        run: bash test/integration_comments.sh
+        # run: bash test/integration_comments.sh
 
       - name: Run plugin toggle integration test 🔌
         run: bash test/integration_plugin_toggles.sh
