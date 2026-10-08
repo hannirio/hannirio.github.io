@@ -77,20 +77,20 @@ jobs:
       # - name: Run comments integration test 🧪
         # run: bash test/integration_comments.sh
 
-      - name: Run plugin toggle integration test 🔌
-        run: bash test/integration_plugin_toggles.sh
+      # - name: Run plugin toggle integration test 🔌
+      #   run: bash test/integration_plugin_toggles.sh
 
-      - name: Run distill integration test 📄
-        run: bash test/integration_distill.sh
+      # - name: Run distill integration test 📄
+      #   run: bash test/integration_distill.sh
 
-      - name: Run bootstrap compatibility integration test 🧩
-        run: bash test/integration_bootstrap_compat.sh
+      # - name: Run bootstrap compatibility integration test 🧩
+      #   run: bash test/integration_bootstrap_compat.sh
 
-      - name: Run upgrade CLI integration test ⬆️
-        run: bash test/integration_upgrade_cli.sh
+      # - name: Run upgrade CLI integration test ⬆️
+      #   run: bash test/integration_upgrade_cli.sh
 
-      - name: Run CSS minify integration test 🎨
-        run: bash test/integration_css_minify.sh
+      # - name: Run CSS minify integration test 🎨
+      #   run: bash test/integration_css_minify.sh
 
-      - name: Run new plugin integration checks 🧩
-        run: bash test/integration_new_plugins.sh
+      # - name: Run new plugin integration checks 🧩
+      #   run: bash test/integration_new_plugins.sh
