@@ -32,8 +32,6 @@ Hello! I am Han Bao. I will be joining the Graduate School of Arts and Sciences 
 
 My research interests lie at the intersection of **Game AI and Machine Learning**. Specifically, I focus on developing advanced algorithms for **perfect information games** (such as Go and Shogi), as well as complex **imperfect-information and multi-player games**. My methodological approach heavily utilizes **reinforcement learning, game tree search, and counterfactual regret minimization (CFR)**.
 
-Prior to my graduate studies, I received my Bachelor of Engineering degree in Internet of Things from **Xi'an Jiaotong University** in 2023. Beyond my academic journey, I previously worked as a Software Developer, specializing in customized storage drive scripts and automated validation tools. 
-
-
+Prior to my graduate studies, I received my Bachelor of Engineering degree in Internet of Things from **Xi'an Jiaotong University** in 2023. Beyond my academic journey, I previously worked as a Software Developer, specializing in customized storage drive scripts and automated validation tools.
 
 I am always open to insightful discussions and potential collaborations. Please feel free to reach out!

@@ -90,16 +90,7 @@
       "name": "Programming",
       "level": "Proficient",
       "icon": "fa-solid fa-code",
-      "keywords": [
-        "C/C++",
-        "Python",
-        "Node.js",
-        "Shell",
-        "HTML+CSS",
-        "XML",
-        "LaTeX",
-        "Figma"
-      ]
+      "keywords": ["C/C++", "Python", "Node.js", "Shell", "HTML+CSS", "XML", "LaTeX", "Figma"]
     }
   ],
   "languages": [
@@ -140,13 +131,7 @@
     {
       "name": "Technical Writing & Knowledge Sharing",
       "summary": "Developed a series of comprehensive technical guides on core computer science and mathematics subjects, synthesizing complex theories into structured learning resources available on personal homepage.",
-      "highlights": [
-        "Data Structure & Algorithms",
-        "Computer Architecture",
-        "Digital Circuit",
-        "Operating System",
-        "Formal Language and Automata"
-      ],
+      "highlights": ["Data Structure & Algorithms", "Computer Architecture", "Digital Circuit", "Operating System", "Formal Language and Automata"],
       "startDate": "",
       "endDate": ""
     }
