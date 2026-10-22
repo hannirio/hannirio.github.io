@@ -1,0 +1,17 @@
+---
+layout: post
+---
+<!-- 继承原有的 post 模板，并全局注入自定义代码框样式 -->
+<style>
+div.highlighter-rouge pre,
+div.highlighter-rouge pre code,
+figure.highlight pre,
+figure.highlight pre code,
+.highlight pre code {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    padding: 13px 15px !important;
+}
+</style>
+
+{{ content }}
