@@ -110,7 +110,10 @@
 } /* Text.Whitespace */
 .highlight .mf {
   color: #3677a9;
-} /* Literal.Number.Float */ /* Literal.Number.Hex */
+} /* Literal.Number.Float */
+.highlight .mh {
+  color: #3677a9;
+} /* Literal.Number.Hex */
 .highlight .mi {
   color: #3677a9;
 } /* Literal.Number.Integer */
