@@ -14,7 +14,8 @@ figure.highlight pre code,
     line-height: 1.4 !important;
     padding: 13px 15px !important;
 }
-</style> <h3 id="79-word-search"><a href="https://leetcode.com/problems/word-search/description/" rel="external nofollow noopener" target="_blank">79. Word Search</a></h3> <p>在面试的时候碰到这道题了，思路确实很简单，但就是控制DFS和回溯的时候，细节挺多的。我觉得这道题的练习意义非常重大，相当于把DFS和回溯全部练了一遍了。标准套模板的代码如下。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</style> <h3 id="79-word-search"><a href="https://leetcode.com/problems/word-search/description/" rel="external nofollow noopener" target="_blank">79. Word Search</a></h3> <p>在面试的时候碰到这道题了，思路确实很简单，但就是控制DFS和回溯的时候，细节挺多的。我觉得这道题的练习意义非常重大，相当于把DFS和回溯全部练了一遍了。标准套模板的代码如下。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="c1">// 偏移数组</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dx</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
@@ -66,7 +67,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">find</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <p>精简之后的做法也很不错,直接对所有点进行一个DFS,优化掉原有的visited数组，直接进行一个原地修改</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <p>精简之后的做法也很不错,直接对所有点进行一个DFS,优化掉原有的visited数组，直接进行一个原地修改</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="kt">bool</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;&amp;</span> <span class="n">board</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">word</span><span class="p">){</span>
         <span class="c1">// 越界判断</span>
@@ -94,7 +96,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="605-can-place-flowers"><a href="https://leetcode.com/problems/can-place-flowers/description/" rel="external nofollow noopener" target="_blank">605. Can Place Flowers</a></h3> <p>这道题的思路直接贪心就过了，算是非常经典的一个贪心算法题目了。比较麻烦的是这个if判断逻辑。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="605-can-place-flowers"><a href="https://leetcode.com/problems/can-place-flowers/description/" rel="external nofollow noopener" target="_blank">605. Can Place Flowers</a></h3> <p>这道题的思路直接贪心就过了，算是非常经典的一个贪心算法题目了。比较麻烦的是这个if判断逻辑。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">bool</span> <span class="n">canPlaceFlowers</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">flowerbed</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -109,7 +112,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">cnt</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="97-interleaving-string"><a href="https://leetcode.com/problems/interleaving-string/description/" rel="external nofollow noopener" target="_blank">97. Interleaving String</a></h3> <p>非常经典的一个2维DP，建出DP数组之后就比较容易了</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="97-interleaving-string"><a href="https://leetcode.com/problems/interleaving-string/description/" rel="external nofollow noopener" target="_blank">97. Interleaving String</a></h3> <p>非常经典的一个2维DP，建出DP数组之后就比较容易了</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">bool</span> <span class="n">isInterleave</span><span class="p">(</span><span class="n">string</span> <span class="n">s1</span><span class="p">,</span> <span class="n">string</span> <span class="n">s2</span><span class="p">,</span> <span class="n">string</span> <span class="n">s3</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">m</span> <span class="o">=</span> <span class="n">s2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
@@ -131,7 +135,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">];</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="1712-ways-to-split-array-into-three-subarrays"><a href="https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/" rel="external nofollow noopener" target="_blank">1712. Ways to Split Array Into Three Subarrays</a></h3> <p>思路：利用前缀和 + 二分搜索 （ 总共砍2刀，枚举固定第一刀的位置然后找出可能的第二刀的位置）</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="1712-ways-to-split-array-into-three-subarrays"><a href="https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/" rel="external nofollow noopener" target="_blank">1712. Ways to Split Array Into Three Subarrays</a></h3> <p>思路：利用前缀和 + 二分搜索 （ 总共砍2刀，枚举固定第一刀的位置然后找出可能的第二刀的位置）</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">int</span> <span class="n">waysToSplit</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
@@ -152,7 +157,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="8-string-to-integer-atoi"><a href="https://leetcode.com/problems/string-to-integer-atoi/description/" rel="external nofollow noopener" target="_blank">8. String to Integer (atoi)</a></h3> <p>遍历字符串判断越界，综合来说就是模拟题目</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="8-string-to-integer-atoi"><a href="https://leetcode.com/problems/string-to-integer-atoi/description/" rel="external nofollow noopener" target="_blank">8. String to Integer (atoi)</a></h3> <p>遍历字符串判断越界，综合来说就是模拟题目</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">int</span> <span class="n">myAtoi</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -182,7 +188,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">res</span> <span class="o">*</span> <span class="n">sgn</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="395-longest-substring-with-at-least-k-repeating-characters"><a href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/description/" rel="external nofollow noopener" target="_blank">395. Longest Substring with At Least K Repeating Characters</a></h3> <p>思路：使用分治法然后递归解决</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="395-longest-substring-with-at-least-k-repeating-characters"><a href="https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/description/" rel="external nofollow noopener" target="_blank">395. Longest Substring with At Least K Repeating Characters</a></h3> <p>思路：使用分治法然后递归解决</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">int</span> <span class="n">longestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -202,7 +209,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="525-contiguous-array"><a href="https://leetcode.com/problems/contiguous-array/description/" rel="external nofollow noopener" target="_blank">525. Contiguous Array</a></h3> <p>方法：使用前缀和➕哈希</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="525-contiguous-array"><a href="https://leetcode.com/problems/contiguous-array/description/" rel="external nofollow noopener" target="_blank">525. Contiguous Array</a></h3> <p>方法：使用前缀和➕哈希</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="kt">int</span> <span class="n">findMaxLength</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// sum : idx</span>
@@ -222,7 +230,8 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">max_len</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div> <h3 id="187-repeated-dna-sequences"><a href="https://leetcode.com/problems/repeated-dna-sequences/description/" rel="external nofollow noopener" target="_blank">187. Repeated DNA Sequences</a></h3> <p>方法：使用哈希,为了防止重复计数，在if判定里限制一下hash计数的大小就行</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</code></pre></div></div> <h3 id="187-repeated-dna-sequences"><a href="https://leetcode.com/problems/repeated-dna-sequences/description/" rel="external nofollow noopener" target="_blank">187. Repeated DNA Sequences</a></h3> <p>方法：使用哈希,为了防止重复计数，在if判定里限制一下hash计数的大小就行</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">findRepeatedDnaSequences</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="k">return</span> <span class="p">{};</span>
@@ -236,6 +245,127 @@ figure.highlight pre code,
         <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
+</code></pre></div></div> <h3 id="46-permutations"><a href="https://leetcode.com/problems/permutations/description/" rel="external nofollow noopener" target="_blank">46. Permutations</a></h3> <p>最经典的回溯板子题目，要把所有分支都遍历一遍，与下面一题有点区别。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">rec</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span> <span class="n">visited</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">tmp</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+        <span class="c1">// 遍历所有分支</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="n">rec</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>      <span class="c1">// 回溯阶段</span>
+            <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">permute</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ans</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="n">rec</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="78-subsets"><a href="https://leetcode.com/problems/subsets/description/" rel="external nofollow noopener" target="_blank">78. Subsets</a></h3> <p>也是回溯的经典题目，根据idx来控制回溯的范围，与上题有点区别</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">rec</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">tmp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="c1">// 控制范围剪枝</span>
+            <span class="n">rec</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">subsets</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ans</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="n">rec</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div> <h3 id="146-lru-cache"><a href="https://leetcode.com/problems/lru-cache/description/" rel="external nofollow noopener" target="_blank">146. LRU Cache</a></h3> <p>这道题应该是面试里面最最经典的题目了，不想去记双向链表的内置函数，那么就用数组来模拟双向链表来处理节点。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">LRUCache</span> <span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">cap</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+    <span class="c1">// 分别模拟虚拟头节点,尾节点</span>
+    <span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">10001</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">tail</span> <span class="o">=</span> <span class="mi">10002</span><span class="p">;</span>
+    <span class="c1">// 直接用连续数组构建数据结构，索引就是 Key</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">[</span><span class="mi">10005</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">prev</span><span class="p">[</span><span class="mi">10005</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">nxt</span><span class="p">[</span><span class="mi">10005</span><span class="p">];</span>
+    <span class="kt">bool</span> <span class="n">exist</span><span class="p">[</span><span class="mi">10005</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nxt</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+        <span class="n">nxt</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="n">prev</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 将节点插到头部之后</span>
+    <span class="kt">void</span> <span class="nf">add_to_head</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nxt</span><span class="p">[</span><span class="n">head</span><span class="p">];</span>
+        <span class="n">nxt</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">prev</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">nxt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="n">prev</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">LRUCache</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cap</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// 初始化首尾连接</span>
+        <span class="n">nxt</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+        <span class="n">prev</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="c1">// 初始化存在标记</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">exist</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">exist</span><span class="p">));</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">exist</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">add_to_head</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">val</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">exist</span><span class="p">[</span><span class="n">key</span><span class="p">]){</span>
+            <span class="n">val</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+            <span class="n">add_to_head</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="n">cap</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">lruKey</span> <span class="o">=</span> <span class="n">prev</span><span class="p">[</span><span class="n">tail</span><span class="p">];</span>
+                <span class="n">remove</span><span class="p">(</span><span class="n">lruKey</span><span class="p">);</span>
+                <span class="n">exist</span><span class="p">[</span><span class="n">lruKey</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="n">size</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 插入新节点</span>
+            <span class="n">val</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">add_to_head</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+            <span class="n">exist</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">size</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj-&gt;get(key);
+ * obj-&gt;put(key,value);
+ */</span>
 </code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/C++/">C++_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
