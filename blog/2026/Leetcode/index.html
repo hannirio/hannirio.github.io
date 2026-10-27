@@ -366,6 +366,104 @@ figure.highlight pre code,
  * int param_1 = obj-&gt;get(key);
  * obj-&gt;put(key,value);
  */</span>
+</code></pre></div></div> <h3 id="2-add-two-numbers"><a href="https://leetcode.com/problems/add-two-numbers/description/" rel="external nofollow noopener" target="_blank">2. Add Two Numbers</a></h3> <p>根据题目模拟就行，注意处理连续进位的条件。第一版手撕出来的代码如下：</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="cm">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="k">return</span> <span class="n">l2</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">l2</span> <span class="o">==</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="k">return</span> <span class="n">l1</span><span class="p">;</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">();</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">l1</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+            <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">sum</span> <span class="o">%=</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">carry</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
+            <span class="k">else</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="c1">// 有进位可以新建一个节点值为1的节点然后递归下去</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">left</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="nb">nullptr</span> <span class="o">?</span> <span class="n">l2</span> <span class="o">:</span> <span class="n">l1</span><span class="p">);</span>
+            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div> <p>优化一下判断条件，直接统一循环即可♻️</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */</span>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="nb">nullptr</span> <span class="o">||</span> <span class="n">l2</span> <span class="o">!=</span> <span class="nb">nullptr</span> <span class="o">||</span> <span class="n">carry</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="nb">nullptr</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="n">l2</span> <span class="o">==</span> <span class="nb">nullptr</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+            <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+            <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span> <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="k">delete</span> <span class="n">dummy</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div> <h3 id="415-add-strings"><a href="https://leetcode.com/problems/add-strings/description/" rel="external nofollow noopener" target="_blank">415. Add Strings</a></h3> <p>相比上一道题，更简单的一道，用字符串模拟加法</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">string</span> <span class="n">addStrings</span><span class="p">(</span><span class="n">string</span> <span class="n">num1</span><span class="p">,</span> <span class="n">string</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">num1</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">num2</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">p1</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">p2</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">carry</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="n">num1</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="n">num2</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+            <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">sum</span> <span class="o">%=</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="sc">'0'</span><span class="p">;</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+            <span class="n">p1</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">p2</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">reverse</span><span class="p">(</span><span class="n">ans</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">ans</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/C++/">C++_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
