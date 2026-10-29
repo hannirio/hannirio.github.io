@@ -567,6 +567,27 @@ S 的长度为 A + B，且正好包含 A 个 'a' 字母与 B 个 'b' 字母；
         <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
+</code></pre></div></div> <h3 id="7-reverse-integer"><a href="https://leetcode.com/problems/reverse-integer/description/" rel="external nofollow noopener" target="_blank">7. Reverse Integer</a></h3> <p>题目有限制：直接用long存sum值然后强制类型转换即可</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 使用 64 位整数暂存结果，避免运算中溢出</span>
+        
+        <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">digit</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+            <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">digit</span><span class="p">;</span>
+            <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// 翻转完成后，统一判断是否超出了 32 位带符号整数的范围</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&gt;</span> <span class="n">INT_MAX</span> <span class="o">||</span> <span class="n">sum</span> <span class="o">&lt;</span> <span class="n">INT_MIN</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// 强转回 int 返回</span>
+        <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/C++/">C++_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
