@@ -588,6 +588,54 @@ S 的长度为 A + B，且正好包含 A 个 'a' 字母与 B 个 'b' 字母；
         <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">};</span>
+</code></pre></div></div> <h3 id="16-3sum-closest"><a href="https://leetcode.com/problems/3sum-closest/description/" rel="external nofollow noopener" target="_blank">16. 3Sum Closest</a></h3> <p>做这道题最开始想到的解答思路是暴力穷举…确实还没有爆TLE</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">closetSum</span><span class="p">;</span>         <span class="c1">// 最终返回值</span>
+    <span class="kt">int</span> <span class="n">minDiff</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="c1">// 记录最小间距</span>
+
+    <span class="kt">void</span> <span class="n">backtrack</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">curSum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">curCnt</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">){</span>
+        <span class="c1">// 边界条件：当已经选择了 3 个数字时，进行差值计算并返回</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">curCnt</span> <span class="o">==</span> <span class="mi">3</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">curDiff</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">curSum</span> <span class="o">-</span> <span class="n">target</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">curDiff</span> <span class="o">&lt;</span> <span class="n">minDiff</span><span class="p">){</span>
+                <span class="n">minDiff</span> <span class="o">=</span> <span class="n">curDiff</span><span class="p">;</span>
+                <span class="n">closetSum</span> <span class="o">=</span> <span class="n">curSum</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// // 从 start 开始遍历，避免重复选择之前的元素或产生重复组合</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">curSum</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">curCnt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">threeSumClosest</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">closetSum</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">closetSum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div> <p>更好的做法是：排序 + 双指针</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">threeSumClosest</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+        <span class="kt">int</span> <span class="n">closetSum</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">curSum</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">curSum</span> <span class="o">-</span> <span class="n">target</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">abs</span><span class="p">(</span><span class="n">closetSum</span> <span class="o">-</span> <span class="n">target</span><span class="p">))</span> <span class="n">closetSum</span> <span class="o">=</span> <span class="n">curSum</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">curSum</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span> <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curSum</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">else</span> <span class="k">return</span> <span class="n">target</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">closetSum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/C++/">C++_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false

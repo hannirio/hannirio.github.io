@@ -286,7 +286,104 @@ M%
 <span class="c1">// 此时缓冲区里第一个字符是 \n</span>
 <span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">str2</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="c1">// 看到 \n，直接结束读取！str2 变成空字符串</span>
 </code></pre></div></div> <p>为了解决 <code class="language-plaintext highlighter-rouge">cin.get()</code> 留下的换行符问题，通常需要连续调用一个无参数的 <code class="language-plaintext highlighter-rouge">cin.get()</code> 来吃掉那个换行符：</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="mi">20</span><span class="p">).</span><span class="n">get</span><span class="p">();</span> <span class="c1">// 读完一行后，紧接着把 \n 读走</span>
-</code></pre></div></div> <hr> <p><strong>踩坑总结：</strong> 如果你在代码中先使用了 <code class="language-plaintext highlighter-rouge">cin &gt;&gt;</code>（留下了一个 <code class="language-plaintext highlighter-rouge">\n</code>），紧接着使用 <code class="language-plaintext highlighter-rouge">cin.getline()</code>，那么 <code class="language-plaintext highlighter-rouge">getline()</code> 会立刻读到上一次留下的 <code class="language-plaintext highlighter-rouge">\n</code>，从而什么都读不到直接结束。此时必须在这两行代码之间使用 <code class="language-plaintext highlighter-rouge">cin.get()</code> 或 <code class="language-plaintext highlighter-rouge">cin.ignore()</code> 来清空缓冲区的换行符。</p> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/Leetcode/">LeetCode_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
+</code></pre></div></div> <hr> <p><strong>踩坑总结：</strong> 如果你在代码中先使用了 <code class="language-plaintext highlighter-rouge">cin &gt;&gt;</code>（留下了一个 <code class="language-plaintext highlighter-rouge">\n</code>），紧接着使用 <code class="language-plaintext highlighter-rouge">cin.getline()</code>，那么 <code class="language-plaintext highlighter-rouge">getline()</code> 会立刻读到上一次留下的 <code class="language-plaintext highlighter-rouge">\n</code>，从而什么都读不到直接结束。此时必须在这两行代码之间使用 <code class="language-plaintext highlighter-rouge">cin.get()</code> 或 <code class="language-plaintext highlighter-rouge">cin.ignore()</code> 来清空缓冲区的换行符。</p> <h3 id="c结构体数组">C++结构体数组</h3> <p>示例代码如下：</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">inflatable</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="kt">float</span> <span class="n">volume</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">price</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span> 
+    <span class="c1">// Create an array of two inflatable structs and initialize them</span>
+    <span class="n">inflatable</span> <span class="n">guest</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">{</span><span class="s">"Bambi"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">21.99</span><span class="p">},</span>
+        <span class="p">{</span><span class="s">"Godzilla"</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mf">565.99</span><span class="p">}</span>
+    <span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"The guests "</span> <span class="o">&lt;&lt;</span> <span class="n">guest</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" and "</span> <span class="o">&lt;&lt;</span> <span class="n">guest</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" have a combined volume of "</span> <span class="o">&lt;&lt;</span> <span class="n">guest</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">volume</span> <span class="o">+</span> <span class="n">guest</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">volume</span> <span class="o">&lt;&lt;</span> <span class="s">" cubic feet."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="c-共用体-union-详解">C++ 共用体 (Union) 详解</h3> <p>共用体（Union）是一种特殊的数据结构，它允许在相同的内存位置存储不同的数据类型。虽然它可以包含多个不同类型的成员，但在任何特定时刻，<strong>它只能存储并使用其中一个成员的值</strong>。</p> <h4 id="1-核心特性">1. 核心特性</h4> <ul> <li> <strong>内存共享</strong>：共用体的所有成员在内存中具有相同的起始地址。</li> <li> <strong>长度决定</strong>：共用体占用的总内存大小由其<strong>最大成员的长度</strong>决定（为了满足内存对齐，可能还会适当补齐）。</li> <li> <strong>数据覆盖</strong>：当你给共用体的一个新成员赋值时，之前存储在其他成员中的数据会被物理覆盖并丢失。</li> </ul> <h4 id="2-基本语法与代码示例">2. 基本语法与代码示例</h4> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">union</span> <span class="n">ItemValue</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">int_val</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">double_val</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">char_val</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ItemValue</span> <span class="n">val</span><span class="p">;</span>
+    
+    <span class="c1">// 存储一个 int</span>
+    <span class="n">val</span><span class="p">.</span><span class="n">int_val</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Int: "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">.</span><span class="n">int_val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 正常输出 15</span>
+    
+    <span class="c1">// 存储一个 double，此时之前的 int 数据被覆盖破坏</span>
+    <span class="n">val</span><span class="p">.</span><span class="n">double_val</span> <span class="o">=</span> <span class="mf">1.38</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Double: "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">.</span><span class="n">double_val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 正常输出 1.38</span>
+    
+    <span class="c1">// cout &lt;&lt; val.int_val; // 如果此时再访问 int_val，会得到无意义的乱码/错误值</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h3 id="c-枚举-enumeration-详解">C++ 枚举 (Enumeration) 详解</h3> <p>枚举（Enumeration）是C++中的一种用户自定义数据类型，用于为一组相关的整数常量赋予易读的名字。它能显著提升代码的可读性和可维护性，避免在代码中硬编码“魔术数字”（Magic Numbers）。</p> <p>C++中的枚举主要分为两大类：传统枚举和C++11引入的强类型枚举（枚举类）。</p> <h4 id="1-传统枚举-unscoped-enum">1. 传统枚举 (Unscoped Enum)</h4> <p>传统枚举直接使用 <code class="language-plaintext highlighter-rouge">enum</code> 关键字定义。如果没有显式赋值，第一个成员的值默认为 0，后续成员的值依次递增 1。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">enum</span> <span class="n">Color</span> <span class="p">{</span>
+    <span class="n">RED</span><span class="p">,</span>      <span class="c1">// 默认值为 0</span>
+    <span class="n">GREEN</span><span class="p">,</span>    <span class="c1">// 默认值为 1</span>
+    <span class="n">BLUE</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">// 手动赋值为 5</span>
+    <span class="n">YELLOW</span>    <span class="c1">// 自动递增为 6</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Color</span> <span class="n">myColor</span> <span class="o">=</span> <span class="n">GREEN</span><span class="p">;</span>
+    
+    <span class="c1">// 传统枚举会隐式转换为整型</span>
+    <span class="kt">int</span> <span class="n">colorValue</span> <span class="o">=</span> <span class="n">myColor</span><span class="p">;</span> 
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Color value: "</span> <span class="o">&lt;&lt;</span> <span class="n">colorValue</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 输出 1</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>传统枚举的缺陷：</strong></p> <ul> <li> <strong>作用域泄漏</strong>：枚举成员（如 <code class="language-plaintext highlighter-rouge">RED</code>）会直接暴露在枚举类型所在的作用域中。如果在同一个作用域内定义了另一个带有 <code class="language-plaintext highlighter-rouge">RED</code> 成员的枚举或变量，会导致命名冲突编译报错。</li> <li> <strong>类型不安全</strong>：传统枚举可以被隐式转换为整型，这允许开发者拿枚举值去进行无意义的数学运算。</li> </ul> <h4 id="2-强类型枚举--枚举类-scoped-enum---c11">2. 强类型枚举 / 枚举类 (Scoped Enum - C++11)</h4> <p>为了解决传统枚举的作用域和类型安全问题，C++11 引入了 <code class="language-plaintext highlighter-rouge">enum class</code>（或 <code class="language-plaintext highlighter-rouge">enum struct</code>）。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Status</span> <span class="p">{</span>
+    <span class="n">OK</span><span class="p">,</span>
+    <span class="n">ERROR</span><span class="p">,</span>
+    <span class="n">PENDING</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">NetworkState</span> <span class="p">{</span>
+    <span class="n">DISCONNECTED</span><span class="p">,</span>
+    <span class="n">CONNECTING</span><span class="p">,</span>
+    <span class="n">OK</span> <span class="c1">// 与 Status::OK 不冲突，因为作用域被严格隔离</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 必须使用作用域解析符 :: 进行访问</span>
+    <span class="n">Status</span> <span class="n">currentStatus</span> <span class="o">=</span> <span class="n">Status</span><span class="o">::</span><span class="n">OK</span><span class="p">;</span> 
+    
+    <span class="c1">// int val = currentStatus; // 编译错误！强类型枚举不会隐式转换为整型</span>
+    
+    <span class="c1">// 如果确实需要获取其整数值，必须使用 static_cast 进行显式类型转换</span>
+    <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">currentStatus</span><span class="p">);</span> 
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Status value: "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>强类型枚举的优势：</strong></p> <ul> <li> <strong>限制作用域</strong>：必须通过 <code class="language-plaintext highlighter-rouge">枚举名::成员名</code> 访问，完全避免了命名污染。</li> <li> <strong>强类型安全</strong>：不能隐式转换为整数或其他类型，杜绝了意外的比较和计算。</li> </ul> <h4 id="3-指定底层数据类型">3. 指定底层数据类型</h4> <p>在C++11及以后，你可以手动指定枚举在内存中的底层整数类型（传统枚举和强类型枚举皆支持，强类型枚举默认为 <code class="language-plaintext highlighter-rouge">int</code>）。这在底层硬件编程、网络通信或资源受限的嵌入式设备上极其有用。</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 指定底层类型为 8 位无符号整数 (占用 1 字节，而非默认的 4 字节 int)</span>
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="o">:</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="p">{</span>
+    <span class="n">UP</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">DOWN</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">LEFT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="p">};</span>
+</code></pre></div></div> <p>通过指定底层类型，程序可以严格控制数据结构所占用的内存布局，实现内存占用的精细化管理。</p> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/Leetcode/">LeetCode_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
