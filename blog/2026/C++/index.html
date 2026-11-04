@@ -383,7 +383,139 @@ M%
     <span class="n">LEFT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
     <span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="p">};</span>
-</code></pre></div></div> <p>通过指定底层类型，程序可以严格控制数据结构所占用的内存布局，实现内存占用的精细化管理。</p> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/Leetcode/">LeetCode_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
+</code></pre></div></div> <p>通过指定底层类型，程序可以严格控制数据结构所占用的内存布局，实现内存占用的精细化管理。</p> <h3 id="c指针">C++指针</h3> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#include</span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+    <span class="c1">// 1. 基础用法：取地址 (&amp;) 与解引用 (*)</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span> 
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 1. 基础指针 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"num 的初始值: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">// 通过解引用修改原始变量</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"通过 *ptr 修改后 num 的值: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 2. 空指针 (nullptr) - 现代 C++ 推荐的安全初始化方式</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">nullPtr</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 2. 空指针 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nullPtr 的内存地址是: "</span> <span class="o">&lt;&lt;</span> <span class="n">nullPtr</span> <span class="o">&lt;&lt;</span> <span class="s">" (指向0地址，直接解引用会导致程序崩溃)</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 3. 指针与数组 (指针运算)</span>
+    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">};</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">arrPtr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">;</span> <span class="c1">// 数组名本质上是指向首元素的指针</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 3. 指针运算与数组 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"数组首元素 (*arrPtr): "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">arrPtr</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"数组第二个元素 (*(arrPtr + 1)): "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">arrPtr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" (地址增加了sizeof(int)个字节)</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">arrPtr</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 指针自身向后移动一位</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"执行 arrPtr++ 后，当前指向的值: "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">arrPtr</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 4. 多级指针 (指向指针的指针)</span>
+    <span class="kt">int</span><span class="o">**</span> <span class="n">ptrToPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ptr</span><span class="p">;</span> <span class="c1">// 存储的是指针变量 ptr 自己的内存地址</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 4. 多级指针 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"通过 **ptrToPtr 连续两次解引用访问 num: "</span> <span class="o">&lt;&lt;</span> <span class="o">**</span><span class="n">ptrToPtr</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 5. const 与 指针修饰</span>
+    <span class="kt">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">var2</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+    
+    <span class="c1">// 5a. 指向常量的指针 (Pointer to Const)</span>
+    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">pToConst</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">var1</span><span class="p">;</span> 
+    <span class="n">pToConst</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">var2</span><span class="p">;</span>   <span class="c1">// 正确：可以改变指向的目标地址</span>
+    <span class="c1">// *pToConst = 70;  // 错误：不能通过该指针修改目标的值</span>
+    
+    <span class="c1">// 5b. 常量指针 (Const Pointer)</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">constP</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">var1</span><span class="p">;</span> 
+    <span class="o">*</span><span class="n">constP</span> <span class="o">=</span> <span class="mi">80</span><span class="p">;</span>       <span class="c1">// 正确：可以通过该指针修改目标的值</span>
+    <span class="c1">// constP = &amp;var2;  // 错误：指针本身的指向一旦确定就不能更改</span>
+    
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 5. 常量指针修饰 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"var1 的值被 constP 修改为: "</span> <span class="o">&lt;&lt;</span> <span class="n">var1</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 6. 动态内存分配 (使用堆内存)</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">dynamicPtr</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">int</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span> 
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"--- 6. 动态内存分配 ---</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"在堆内存中动态分配的值: "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">dynamicPtr</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    
+    <span class="k">delete</span> <span class="n">dynamicPtr</span><span class="p">;</span>    <span class="c1">// 必须手动释放，否则会导致内存泄漏 (Memory Leak)</span>
+    <span class="n">dynamicPtr</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span> <span class="c1">// 释放后立即置空，防止成为悬挂指针 (Dangling Pointer)</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"动态内存已释放，并将指针安全置空。</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="o">---</span> <span class="mf">1.</span> <span class="err">基础指针</span> <span class="o">---</span>
+<span class="n">num</span> <span class="err">的初始值</span><span class="o">:</span> <span class="mi">10</span>
+<span class="err">通过</span> <span class="o">*</span><span class="n">ptr</span> <span class="err">修改后</span> <span class="n">num</span> <span class="err">的值</span><span class="o">:</span> <span class="mi">20</span>
+
+<span class="o">---</span> <span class="mf">2.</span> <span class="err">空指针</span> <span class="o">---</span>
+<span class="n">nullPtr</span> <span class="err">的内存地址是</span><span class="o">:</span> <span class="mh">0x0</span> <span class="p">(</span><span class="err">指向</span><span class="mi">0</span><span class="err">地址，直接解引用会导致程序崩溃</span><span class="p">)</span>
+
+<span class="o">---</span> <span class="mf">3.</span> <span class="err">指针运算与数组</span> <span class="o">---</span>
+<span class="err">数组首元素</span> <span class="p">(</span><span class="o">*</span><span class="n">arrPtr</span><span class="p">)</span><span class="o">:</span> <span class="mi">100</span>
+<span class="err">数组第二个元素</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">arrPtr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">:</span> <span class="mi">200</span> <span class="p">(</span><span class="err">地址增加了</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="err">个字节</span><span class="p">)</span>
+<span class="err">执行</span> <span class="n">arrPtr</span><span class="o">++</span> <span class="err">后，当前指向的值</span><span class="o">:</span> <span class="mi">200</span>
+
+<span class="o">---</span> <span class="mf">4.</span> <span class="err">多级指针</span> <span class="o">---</span>
+<span class="err">通过</span> <span class="o">**</span><span class="n">ptrToPtr</span> <span class="err">连续两次解引用访问</span> <span class="n">num</span><span class="o">:</span> <span class="mi">20</span>
+
+<span class="o">---</span> <span class="mf">5.</span> <span class="err">常量指针修饰</span> <span class="o">---</span>
+<span class="n">var1</span> <span class="err">的值被</span> <span class="n">constP</span> <span class="err">修改为</span><span class="o">:</span> <span class="mi">80</span>
+
+<span class="o">---</span> <span class="mf">6.</span> <span class="err">动态内存分配</span> <span class="o">---</span>
+<span class="err">在堆内存中动态分配的值</span><span class="o">:</span> <span class="mi">99</span>
+<span class="err">动态内存已释放，并将指针安全置空。</span>
+</code></pre></div></div> <h3 id="c-指针数组与指针算术">C++ 指针、数组与指针算术</h3> <p>在 C++ 中，指针和数组有着极其密切的联系。以下是这三个核心概念的详细解析：</p> <h4 id="1-指针-pointers">1. 指针 (Pointers)</h4> <p>指针是一种变量，它存储的不是普通的数据值，而是内存地址。</p> <ul> <li> <strong>获取地址</strong>：可以使用取地址运算符 <code class="language-plaintext highlighter-rouge">&amp;</code> 来获取变量的内存地址，例如 <code class="language-plaintext highlighter-rouge">&amp;stacks[0]</code> 获取数组第一个元素的地址。</li> <li> <strong>解引用</strong>：使用 <code class="language-plaintext highlighter-rouge">*</code> 运算符可以访问指针所指向地址中存储的值，例如 <code class="language-plaintext highlighter-rouge">*pw</code> 会得出指针 <code class="language-plaintext highlighter-rouge">pw</code> 当前指向的具体数值。</li> </ul> <h4 id="2-数组-arrays-与指针的关系">2. 数组 (Arrays) 与指针的关系</h4> <p>数组是一块连续的内存空间。在 C++ 中，数组名在绝大多数情况下会被解释为指向该数组第一个元素的指针。</p> <ul> <li> <strong>数组名即地址</strong>：例如代码中 <code class="language-plaintext highlighter-rouge">double * pw = wages;</code> 是完全合法的，因为数组名 <code class="language-plaintext highlighter-rouge">wages</code> 直接代表了首元素的地址[cite: 1]。</li> <li> <strong>两种表示法完全等价</strong>：C++ 在底层将数组索引转换为指针运算。使用数组表示法 <code class="language-plaintext highlighter-rouge">stacks[1]</code> 和使用指针表示法 <code class="language-plaintext highlighter-rouge">*(stacks + 1)</code> 访问的是同一个元素。</li> </ul> <h4 id="3-指针算术-pointer-arithmetic">3. 指针算术 (Pointer Arithmetic)</h4> <p>指针的加减运算不同于普通的数学运算，它是基于<strong>数据类型的大小</strong>来进行的。</p> <ul> <li> <strong>按类型步进</strong>：当对指针加 1 时（如 <code class="language-plaintext highlighter-rouge">pw = pw + 1</code>），指针的内存地址并不会只增加 1 个字节，而是增加它所指向的数据类型占用的字节数。</li> <li> <strong>实例说明</strong>：如果 <code class="language-plaintext highlighter-rouge">pw</code> 是指向 <code class="language-plaintext highlighter-rouge">double</code>（通常为 8 字节）的指针，加 1 后地址会增加 8[cite: 1]；如果 <code class="language-plaintext highlighter-rouge">ps</code> 是指向 <code class="language-plaintext highlighter-rouge">short</code>（通常为 2 字节）的指针，加 1 后地址会增加 2[cite: 1]。这使得指针恰好移动到数组的下一个元素处。</li> </ul> <h4 id="4-关键区分sizeof-运算符">4. 关键区分：sizeof 运算符</h4> <p>虽然数组名常被当作指针使用，但 <code class="language-plaintext highlighter-rouge">sizeof</code> 运算符能区分它们：</p> <ul> <li> <strong><code class="language-plaintext highlighter-rouge">sizeof(数组名)</code></strong>：返回整个数组在内存中占用的总字节数（例如 3 个 <code class="language-plaintext highlighter-rouge">double</code> 返回 24）。</li> <li> <strong><code class="language-plaintext highlighter-rouge">sizeof(指针)</code></strong>：仅仅返回指针变量本身在系统中所占的字节数（在 32 位系统中通常为 4 字节，64 位系统中为 8 字节）。</li> </ul> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// addpntrs.cpp -- pointer addition</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">wages</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">10000.0</span><span class="p">,</span> <span class="mf">20000.0</span><span class="p">,</span> <span class="mf">30000.0</span><span class="p">};</span>
+    <span class="kt">short</span> <span class="n">stacks</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+
+<span class="c1">// Here are two ways to get the address of an array</span>
+    <span class="kt">double</span> <span class="o">*</span> <span class="n">pw</span> <span class="o">=</span> <span class="n">wages</span><span class="p">;</span>     <span class="c1">// name of an array = address</span>
+    <span class="kt">short</span> <span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">stacks</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// or use address operator</span>
+<span class="c1">// with array element</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pw = "</span> <span class="o">&lt;&lt;</span> <span class="n">pw</span> <span class="o">&lt;&lt;</span> <span class="s">", *pw = "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pw</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">pw</span> <span class="o">=</span> <span class="n">pw</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"add 1 to the pw pointer:</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"pw = "</span> <span class="o">&lt;&lt;</span> <span class="n">pw</span> <span class="o">&lt;&lt;</span> <span class="s">", *pw = "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pw</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ps = "</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span> <span class="o">&lt;&lt;</span> <span class="s">", *ps = "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ps</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="n">ps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"add 1 to the ps pointer:</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ps = "</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span> <span class="o">&lt;&lt;</span> <span class="s">", *ps = "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ps</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"access two elements with array notation</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"stacks[0] = "</span> <span class="o">&lt;&lt;</span> <span class="n">stacks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+         <span class="o">&lt;&lt;</span> <span class="s">", stacks[1] = "</span> <span class="o">&lt;&lt;</span> <span class="n">stacks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"access two elements with pointer notation</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"*stacks = "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">stacks</span>
+         <span class="o">&lt;&lt;</span> <span class="s">", *(stacks + 1) =  "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">stacks</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wages</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" = size of wages array</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pw</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" = size of pw pointer</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">pw</span> <span class="o">=</span> <span class="mh">0x7ff7b55dc1d0</span><span class="p">,</span> <span class="o">*</span><span class="n">pw</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">add</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">the</span> <span class="n">pw</span> <span class="n">pointer</span><span class="o">:</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="mh">0x7ff7b55dc1d8</span><span class="p">,</span> <span class="o">*</span><span class="n">pw</span> <span class="o">=</span> <span class="mi">20000</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="mh">0x7ff7b55dc1c6</span><span class="p">,</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">add</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">the</span> <span class="n">ps</span> <span class="n">pointer</span><span class="o">:</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="mh">0x7ff7b55dc1c8</span><span class="p">,</span> <span class="o">*</span><span class="n">ps</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">access</span> <span class="n">two</span> <span class="n">elements</span> <span class="n">with</span> <span class="n">array</span> <span class="n">notation</span>
+<span class="n">stacks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stacks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">access</span> <span class="n">two</span> <span class="n">elements</span> <span class="n">with</span> <span class="n">pointer</span> <span class="n">notation</span>
+<span class="o">*</span><span class="n">stacks</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">stacks</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">2</span>
+<span class="mi">24</span> <span class="o">=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">wages</span> <span class="n">array</span>
+<span class="mi">8</span> <span class="o">=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">pw</span> <span class="n">pointer</span>
+</code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/Leetcode/">LeetCode_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
