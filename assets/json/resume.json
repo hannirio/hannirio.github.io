@@ -10,42 +10,7 @@
     },
     "profiles": []
   },
-  "work": [
-    {
-      "name": "FESCO Adecco",
-      "position": "Software Developer",
-      "location": "Chengdu, China",
-      "startDate": "2024-06-01",
-      "endDate": "2025-07-01",
-      "summary": "Provided contracted development services for leading multinational technology enterprises, developing customized Shell/Python scripts for storage drives to optimize deployment and automated testing efficiency by 25%.",
-      "highlights": [
-        "Created automated tools for hard drive label generation, reducing manual generation time by 40%.",
-        "Developed validation tools for label information verification, achieving a 15% decrease in labeling errors."
-      ]
-    },
-    {
-      "name": "Xinlingyu Science & Engineering Private School",
-      "position": "Teaching Assistant",
-      "location": "Remote",
-      "startDate": "2024-04-01",
-      "endDate": "2026-03-01",
-      "summary": "Taught computer architecture concepts to over 50 students.",
-      "highlights": [
-        "Provided detailed, structured answers to complex technical questions, improving overall student comprehension and assessment scores."
-      ]
-    },
-    {
-      "name": "Xi'an Jiaotong University Summer Campus",
-      "position": "Project Leader",
-      "location": "Xi'an, China",
-      "startDate": "2022-06-01",
-      "endDate": "2023-07-01",
-      "summary": "Led a team of 6 students in end-to-end web design and development.",
-      "highlights": [
-        "Created an online platform for students to share daily experiences, accumulating over 100 active user interactions during the campus event."
-      ]
-    }
-  ],
+
   "volunteer": [],
   "education": [
     {
