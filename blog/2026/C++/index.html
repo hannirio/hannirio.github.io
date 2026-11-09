@@ -515,6 +515,42 @@ M%
 <span class="o">*</span><span class="n">stacks</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">stacks</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">2</span>
 <span class="mi">24</span> <span class="o">=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">wages</span> <span class="n">array</span>
 <span class="mi">8</span> <span class="o">=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">pw</span> <span class="n">pointer</span>
+</code></pre></div></div> <h3 id="访问结构成员">访问结构成员</h3> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// newstrct.cpp -- using new with a structure</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">struct</span> <span class="nc">inflatable</span>   <span class="c1">// structure definition</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="kt">float</span> <span class="n">volume</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">price</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 标识符是指向结构的指针，访问结构成员用：-&gt;</span>
+<span class="c1">// 标识符是结构名，访问结构成员用：.</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+    <span class="n">inflatable</span> <span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">inflatable</span><span class="p">;</span> <span class="c1">// allot memory for structure</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter name of inflatable item: "</span><span class="p">;</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ps</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>            <span class="c1">// method 1 for member access</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter volume in cubic feet: "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="o">*</span><span class="n">ps</span><span class="p">).</span><span class="n">volume</span><span class="p">;</span>              <span class="c1">// method 2 for member access</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter price: $"</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ps</span><span class="o">-&gt;</span><span class="n">price</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Name: "</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">ps</span><span class="p">).</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>              <span class="c1">// method 2</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Volume: "</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span><span class="o">-&gt;</span><span class="n">volume</span> <span class="o">&lt;&lt;</span> <span class="s">" cubic feet</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="c1">// method 1</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Price: $"</span> <span class="o">&lt;&lt;</span> <span class="n">ps</span><span class="o">-&gt;</span><span class="n">price</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>             <span class="c1">// method 1</span>
+    <span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>                        <span class="c1">// free memory used by structure</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">Enter</span> <span class="n">name</span> <span class="n">of</span> <span class="n">inflatable</span> <span class="n">item</span><span class="o">:</span> <span class="n">mollae</span>
+<span class="n">Enter</span> <span class="n">volume</span> <span class="n">in</span> <span class="n">cubic</span> <span class="n">feet</span><span class="o">:</span> <span class="mf">36.789</span>
+<span class="n">Enter</span> <span class="n">price</span><span class="o">:</span> <span class="err">$</span><span class="mf">329.32</span>
+<span class="n">Name</span><span class="o">:</span> <span class="n">mollae</span>
+<span class="n">Volume</span><span class="o">:</span> <span class="mf">36.789</span> <span class="n">cubic</span> <span class="n">feet</span>
+<span class="n">Price</span><span class="o">:</span> <span class="err">$</span><span class="mf">329.32</span>
 </code></pre></div></div> </div> </article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/Leetcode/">LeetCode_Notes</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 HAN BAO. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
